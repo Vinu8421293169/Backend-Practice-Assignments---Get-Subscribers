@@ -23,9 +23,12 @@ app.get("/subscribers/names",(req,res)=>{
 app.get("/subscribers/:id",(req,res)=>{
     const id=req.params.id;
     Subscriber.find({_id:{$eq:id}}).then((ele)=>{
-        res.status(ele?400:404).send(ele || {message:error.message});
-        return;
-    })
+            res.status(200).send(ele);
+            return;
+    }).catch((err)=>{
+        res.status(400).send({message: "error.message"});
+            return;
+    });
 });
 
 
