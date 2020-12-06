@@ -1,12 +1,8 @@
-
 const express = require('express');
 const app = express()
-
-
-// Your code goes here
-
 const Subscriber=require('./models/subscribers');
 
+// Your code goes here
 
 app.get("/subscribers",(req,res)=>{
     Subscriber.find().then((ele)=>{
@@ -27,28 +23,10 @@ app.get("/subscribers/names",(req,res)=>{
 app.get("/subscribers/:id",(req,res)=>{
     const id=req.params.id;
     Subscriber.find({_id:{$eq:id}}).then((ele)=>{
-        res.send(ele);
+        res.status(ele?400:404).send(ele || {message:error.message});
         return;
     })
-})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+});
 
 
 
