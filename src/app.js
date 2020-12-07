@@ -26,7 +26,7 @@ app.get("/subscribers/:id",(req,res)=>{
             res.status(200).send(ele);
             return;
     }).catch((err)=>{
-        res.status(400).send({message: "error.message"});
+        res.status(400).send({message:err});
             return;
     });
 });
