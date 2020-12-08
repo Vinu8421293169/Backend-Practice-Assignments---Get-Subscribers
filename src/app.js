@@ -22,8 +22,11 @@ app.get("/subscribers/names",(req,res)=>{
 
 app.get("/subscribers/:id",(req,res)=>{
     const id=req.params.id;
-    Subscriber.find({_id:id}).then((ele)=>{
-        req.send(ele);
+    Subscriber.find({_id:id})
+        .then((subscribers)=>{
+        subscribers.map((subscriber)=>{
+            req.send(subscriber);
+        })
         return;
     }).catch((err)=>{
         res.status(400).send({message:err.message});
