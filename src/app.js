@@ -20,14 +20,14 @@ app.get("/subscribers/names",(req,res)=>{
 })
 
 
-app.get("/subscribers/:id",(req,res)=>{
-    const id=req.params.id;
-    Subscriber.find({_id:id})
-        .then((subscribers)=>subscribers.map((subscriber)=>req.send(subscriber)))
-        .catch((error)=>{
-        res.status(400).send({message:error.message});
-    });
-    return;
+app.get("/subscribers/:id", (req, res) => {
+  const id = req.params.id;
+  Subscriber.find({ _id: id })
+    .then((subscribers) =>
+      subscribers.map((subscribers) => res.send(subscribers))
+    )
+    .catch((error) => res.status(400).send({ message: error.message }));
+  return;
 });
 
 
