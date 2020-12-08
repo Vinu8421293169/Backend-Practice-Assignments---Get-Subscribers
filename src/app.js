@@ -22,13 +22,13 @@ app.get("/subscribers/names",(req,res)=>{
 
 app.get("/subscribers/:id",(req,res)=>{
     const id=req.params.id;
-    Subscriber.find({_id:{$eq:id}}).then((ele)=>{
-            res.status(200).send(ele);
-            return;
+    Subscriber.find({_id:id}).then((ele)=>{
+        req.send(ele);
+        return;
     }).catch((err)=>{
-        res.status(400).send({message:err});
-            return;
+        res.status(400).send({message:err.message});
     });
+    return;
 });
 
 
